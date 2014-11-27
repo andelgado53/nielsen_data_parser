@@ -9,6 +9,7 @@ import resources
 from ftplib import FTP
 from datetime import date, timedelta
 
+'''script to parse Nielsen files'''
 
 base_directory =  os.path.dirname(os.path.realpath(__file__))
 input_folder = 'input_data'
