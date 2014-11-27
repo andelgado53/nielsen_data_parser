@@ -1,0 +1,8 @@
+#ignore resources file 
+resources.py
+
+#ignore pcy files
+*.pcy
+
+__init__.py
+
