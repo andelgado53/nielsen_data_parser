@@ -2,7 +2,7 @@
 resources.py
 
 #ignore pcy files
-*.pcy
+resources.pcy
 
 __init__.py
 
