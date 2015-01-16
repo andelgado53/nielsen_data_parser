@@ -287,47 +287,7 @@ def test_albums(list_of_albums):
 	print('>>>soundscan digital album sales:')
 	print(soundscan_physical)
 
-def upload_data():
 
-	album_feed_name = 'NIELSEN_ALBUM_1'
-	track_feed_name = 'NIELLSEN_TRACKS'
-	album_ref_feed_name = 'NIELSE_ALBUM_MAP' 
-	token = resources.token
-	batchDate = str(date.today() + timedelta(days= -1)).replace('-', '/')
-	
-	
-	upload_string = '''
-					/apollo/env/DCSUploadClient/bin/dcs 
-					-uploadFile {upFile} 
-					-batchDate {batchDate} 
-					-feedName {feedname} 
-					-token {token}
-					-partitionKey MARKETPLACE_ID 
-					-partitionValues 1
-					-maxRejects 100
-					'''
-	
-	for file_name in output_file_names:
-		if 'xref' in file_name:
-                        
-			#print(upload_string.format(upFile= file_name, batchDate=batchDate, feedname=album_ref_feed_name, token=token))
-			upload_list_comd = upload_string.format(upFile= file_name, batchDate=batchDate, feedname=album_ref_feed_name, token=token).split()
-			t = subprocess.check_output(upload_list_comd)
-			print(t)
-			time.sleep(40)
-		elif 'tracks' in file_name:
-			#print(upload_string.format(upFile= file_name, batchDate=batchDate, feedname=track_feed_name, token=token))
-			upload_list_comd = upload_string.format(upFile= file_name, batchDate=batchDate, feedname=track_feed_name, token=token).split()
-			t = subprocess.check_output(upload_list_comd)
-			print(t)
-			time.sleep(40)
-		else:
-			#print(upload_string.format(upFile= file_name, batchDate=batchDate, feedname=album_feed_name, token=token))
-			upload_list_comd = upload_string.format(upFile= file_name, batchDate=batchDate, feedname=album_feed_name, token=token).split()
-			t = subprocess.check_output(upload_list_comd)
-			print(t)
-			#time.sleep(20)
-	print('>>>feed uploaded ready for DW load')
 	
 
 ziped_report = fetch_data()
@@ -336,5 +296,5 @@ parse_files()
 
 test_tracks(track_rows)
 test_albums(album_rows)
-#upload_data()
+resources.upload_data()
 
